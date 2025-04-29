@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NeoPage | Ultra-Secure Neon Search</title>
     <style>
         :root {
@@ -12,7 +11,6 @@
             --darker-bg: #050510;
             --text-color: #e0e0ff;
         }
-        
         body {
             margin: 0;
             padding: 0;
@@ -25,13 +23,11 @@
             min-height: 100vh;
             overflow-x: hidden;
         }
-
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
         }
-
         header {
             display: flex;
             justify-content: space-between;
@@ -39,7 +35,6 @@
             padding: 20px 0;
             border-bottom: 1px solid rgba(150, 0, 255, 0.3);
         }
-
         .logo {
             display: flex;
             align-items: center;
@@ -51,40 +46,33 @@
             color: transparent;
             text-shadow: 0 0 10px rgba(150, 0, 255, 0.3);
         }
-
         .logo span {
             font-size: 14px;
             margin-left: 10px;
             color: var(--text-color);
             font-weight: normal;
         }
-
         nav ul {
             display: flex;
             list-style: none;
         }
-
         nav ul li {
             margin-left: 20px;
         }
-
         nav ul li a {
             color: var(--text-color);
             text-decoration: none;
             transition: color 0.3s;
             font-size: 14px;
         }
-
         nav ul li a:hover {
             color: var(--neon-blue);
             text-shadow: 0 0 5px var(--neon-blue);
         }
-
         .search-section {
             text-align: center;
             padding: 60px 0;
         }
-
         h1 {
             font-size: 48px;
             margin-bottom: 30px;
@@ -93,13 +81,11 @@
             background-clip: text;
             color: transparent;
         }
-
         .search-box {
             position: relative;
             max-width: 700px;
             margin: 0 auto 30px;
         }
-
         .search-input {
             width: 100%;
             padding: 15px 20px;
@@ -112,12 +98,10 @@
             transition: all 0.3s;
             box-shadow: 0 0 15px rgba(150, 0, 255, 0.2);
         }
-
         .search-input:focus {
             border-color: var(--neon-blue);
             box-shadow: 0 0 20px rgba(0, 240, 252, 0.3);
         }
-
         .search-btn {
             position: absolute;
             right: 5px;
@@ -131,12 +115,10 @@
             font-weight: bold;
             transition: all 0.3s;
         }
-
         .search-btn:hover {
             transform: scale(1.05);
             box-shadow: 0 0 15px rgba(0, 240, 252, 0.5);
         }
-
         .security-badge {
             display: inline-block;
             margin-top: 20px;
@@ -147,14 +129,12 @@
             font-size: 14px;
             color: var(--neon-blue);
         }
-
         .features {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
             margin: 60px 0;
         }
-
         .feature-card {
             background-color: rgba(10, 10, 30, 0.7);
             border-radius: 10px;
@@ -162,13 +142,11 @@
             border: 1px solid rgba(150, 0, 255, 0.3);
             transition: all 0.3s;
         }
-
         .feature-card:hover {
             transform: translateY(-5px);
             border-color: var(--neon-blue);
             box-shadow: 0 10px 20px rgba(0, 240, 252, 0.1);
         }
-
         .feature-icon {
             font-size: 30px;
             margin-bottom: 15px;
@@ -177,18 +155,15 @@
             background-clip: text;
             color: transparent;
         }
-
         .feature-title {
             font-size: 20px;
             margin-bottom: 10px;
             color: var(--neon-blue);
         }
-
         .language-switcher {
             text-align: center;
             margin: 30px 0;
         }
-
         .language-btn {
             background: none;
             border: none;
@@ -199,16 +174,13 @@
             border-radius: 5px;
             transition: all 0.3s;
         }
-
         .language-btn.active {
             background-color: rgba(150, 0, 255, 0.3);
             color: var(--neon-blue);
         }
-
         .language-btn:hover {
             color: var(--neon-blue);
         }
-
         footer {
             text-align: center;
             padding: 30px 0;
@@ -216,17 +188,14 @@
             border-top: 1px solid rgba(150, 0, 255, 0.3);
             font-size: 14px;
         }
-
         .neon-link {
             color: var(--neon-blue);
             text-decoration: none;
             transition: text-shadow 0.3s;
         }
-
         .neon-link:hover {
             text-shadow: 0 0 5px var(--neon-blue);
         }
-
         /* Search results styles */
         .search-results {
             max-width: 800px;
@@ -234,7 +203,6 @@
             padding: 20px;
             display: none;
         }
-
         .result-item {
             background-color: rgba(10, 10, 30, 0.7);
             border-radius: 8px;
@@ -243,18 +211,15 @@
             border-left: 3px solid var(--neon-purple);
             transition: all 0.3s;
         }
-
         .result-item:hover {
             border-left-color: var(--neon-blue);
             transform: translateX(5px);
         }
-
         .result-title {
             font-size: 20px;
             margin-bottom: 10px;
             color: var(--neon-blue);
         }
-
         .result-link {
             color: var(--neon-purple);
             text-decoration: none;
@@ -262,86 +227,50 @@
             margin-bottom: 10px;
             font-size: 14px;
         }
-
         .result-link:hover {
             text-decoration: underline;
             color: var(--neon-blue);
         }
-
         .result-snippet {
             font-size: 14px;
             color: var(--text-color);
             opacity: 0.8;
         }
-
         .no-results {
             text-align: center;
             padding: 40px;
             color: var(--neon-blue);
             font-size: 18px;
         }
-
         /* Animation */
         @keyframes pulse {
             0% { opacity: 0.7; }
             50% { opacity: 1; }
             100% { opacity: 0.7; }
         }
-
         .pulse {
             animation: pulse 2s infinite;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            header {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            nav ul {
-                margin-top: 20px;
-                justify-content: center;
-            }
-            
-            h1 {
-                font-size: 36px;
-            }
-            
-            .search-input {
-                padding: 12px 15px;
-            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <div class="logo">
-                NeoPage <span>by NeoNeon</span>
-            </div>
+            <div class="logo">NeoPage <span>by NeoNeon</span></div>
         </header>
-
         <section class="search-section">
             <h1>Search Without Compromise</h1>
             <div class="search-box">
                 <input type="text" class="search-input" placeholder="Ask anything..." id="searchQuery">
                 <button class="search-btn" id="searchButton">Search</button>
             </div>
-            <div class="security-badge pulse">
-                🔒 Ultra-Secure Mode Active | No Tracking
-            </div>
+            <div class="security-badge pulse">🔒 Ultra-Secure Mode Active | No Tracking</div>
         </section>
-
         <section class="language-switcher">
             <button class="language-btn active">English</button>
             <button class="language-btn">Русский</button>
         </section>
-
-        <div class="search-results" id="searchResults">
-            <!-- Results will be inserted here by JavaScript -->
-        </div>
-
+        <div class="search-results" id="searchResults"></div>
         <section id="features" class="features">
             <div class="feature-card">
                 <div class="feature-icon">🛡️</div>
@@ -358,226 +287,545 @@
                 <h3 class="feature-title">Massive Database</h3>
                 <p>Over 50 billion indexed pages with deep web coverage. Instant updates with new sites added in minutes.</p>
             </div>
-            <div class="feature-card">
-                <div class="feature-icon">🌐</div>
-                <h3 class="feature-title">Built-in Translator</h3>
-                <p>Real-time translation for 100+ languages, including rare dialects. No external services needed.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🔍</div>
-                <h3 class="feature-title">Archive Search</h3>
-                <p>Access historical versions of websites with seamless Wayback Machine integration.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🎙️</div>
-                <h3 class="feature-title">Voice Search</h3>
-                <p>Neural network-powered voice recognition for hands-free searching with 99% accuracy.</p>
-            </div>
         </section>
-
         <footer>
-            <p>CopyRight FREE 2025 <a href="https://neopage.pages.dev" class="neon-link">Fast-Page</a> by <a href="https://neoprojects.pages.dev/" class="neon-link">NeoNeon</a> (non-profit organization)</p>
+            <p>CopyRight FREE 2025 <a href="https://neopage.pages.dev" class="neon-link">NeoPage</a> by <a href="https://neoprojects.pages.dev/" class="neon-link">NeoNeon</a> (non-profit organization)</p>
             <p>No ads. No tracking. Just pure search.</p>
             <p>Powered by the community, for the community.</p>
         </footer>
     </div>
 
     <script>
-        // Demo search database
         const searchDatabase = [
-            {
-                title: "YouTube - Video Sharing Platform",
-                url: "https://www.youtube.com",
-                snippet: "YouTube is a global video-sharing platform where users can watch, like, share, comment and upload their own videos."
-            },
-            {
-                title: "Wikipedia - The Free Encyclopedia",
-                url: "https://www.wikipedia.org",
-                snippet: "Wikipedia is a free online encyclopedia, created and edited by volunteers around the world and hosted by the Wikimedia Foundation."
-            },
-            {
-                title: "GitHub - Where the world builds software",
-                url: "https://github.com",
-                snippet: "GitHub is where over 100 million developers shape the future of software, together. Contribute to the open source community."
-            },
-            {
-                title: "Google - Search Engine",
-                url: "https://www.google.com",
-                snippet: "Google Search is a search engine provided by Google. It is the most used search engine on the World Wide Web."
-            },
-            {
-                title: "NeoNeon Official Website",
-                url: "https://neoprojects.pages.dev/",
-                snippet: "Official website of NeoNeon non-profit organization. Learn about our mission and projects."
-            },
-            {
-                title: "MDN Web Docs - Web Development Resources",
-                url: "https://developer.mozilla.org",
-                snippet: "Resources for developers, by developers. Documenting web technologies, including CSS, HTML, and JavaScript."
-            },
-            {
-                title: "Stack Overflow - Developer Questions",
-                url: "https://stackoverflow.com",
-                snippet: "Stack Overflow is a question and answer website for professional and enthusiast programmers."
-            },
-            {
-                title: "Secure Password Generator By NeoNeon",
-                url: "https://neosecure.pages.dev",
-                snippet: "Resources for free and secure password generation. No ads, No tracking, 100% Secure."
-            },
-            {
-                title: "Infinity Free",
-                url: "https://infinityfree.com",
-                snippet: "The best for price hosting."
-            },
-            {
-                title: "Element",
-                url: "https://app.element.com",
-                snippet: "Anonymus massanger client."
-            },
-            {
-                title: "SmsFast",
-                url: "https://smsfast.net/",
-                snippet: "Quick SMS reception on virtual numbers."
-            },
-            {
-                title: "Gmail",
-                url: "https://mail.google.com",
-                snippet: "Is not security mail, for google."
-            },
-            {
-                title: "Razer",
-                url: "https://www.razer.ru/",
-                snippet: "Official russia razer web-site."
-            },
-            {
-                title: "Brave",
-                url: "https://brave.com",
-                snippet: "Official brave browser web-site."
-            },
             {
                 title: "Tor Browser",
                 url: "https://www.torproject.org/download/",
-                snippet: "Official tor project web-site."
-            },
-            {
-                title: "LolzTeam",
-                url: "https://lzt.market/",
-                snippet: "Official LolzTeam website. Buy and sell."
+                snippet: "Official Tor Download Page.",
+                tags: ["privacy", "anonymity", "tor", "browser"]
             },
             {
                 title: "DuckDuckGo",
                 url: "https://duckduckgo.com",
-                snippet: "Popular and anonymous search engine with ducks."
+                snippet: "Private search engine with no tracking.",
+                tags: ["search", "privacy", "secure", "anonymous"]
             },
             {
-                title: "Binance",
-                url: "https://www.binance.com/",
-                snippet: "The largest crypto exchange in the world."
-            },
-            {
-                title: "DuckAI",
-                url: "https://duck.ai",
-                snippet: "Private anonymous chats that are not used for AI training."
-            },
-            {
-                title: "Twich",
-                url: "https://twich.tv",
-                snippet: "Live streaming here."
-            },
-            {
-                title: "Nic domain",
-                url: "https://nic.ua",
-                snippet: "Buy domain for UA."
-            },
-            {
-                title: "Telegram",
+                title: "Telegram Web",
                 url: "https://web.telegram.org",
-                snippet: "Best popular massanger for WORLD!"
+                snippet: "Encrypted messaging platform.",
+                tags: ["messenger", "chat", "encrypted", "private"]
             },
             {
-                title: "WhatsApp",
-                url: "https://web.whatsapp.com",
-                snippet: "Best popular massanger for WORLD!"
+                title: "Brave Browser",
+                url: "https://brave.com",
+                snippet: "Privacy-focused browser with ad blocker.",
+                tags: ["browser", "privacy", "adblock", "secure"]
             },
             {
-                title: "Tor links",
-                url: "https://torlinks.net/",
-                snippet: "Links of Tor Browser, be more careful."
-            },
-            {
-                title: "Tor 66 (DarkNet)",
-                url: "http://tor66sewebgixwhcqfnp5inzp5x5uohhdy3kvtnyfxc2e5mxiuh34iid.onion/",
-                snippet: "Anonymous .onion search engine for Tor (not recommended for other browsers)"
-            },
-            {
-                title: "HayStack (DarkNet)",
+                title: "Haystack (DarkNet)",
                 url: "http://haystak5njsmn2hqkewecpaxetahtwhsbsa64jom2k22z5afxhnpxfid.onion/",
-                snippet: "Anonymous .onion search engine for Tor (not recommended for other browsers)"
+                snippet: "Onion site search engine.",
+                tags: ["darknet", "tor", "search", "onion"]
             },
             {
-                title: "Not Evil (DarkNet)",
-                url: "http://dqp5kblhl3a4qvt7tbppgx4c4wxsnoelgmvsqrdbgx4kghhu7s4b6iid.onion/",
-                snippet: "Anonymous .onion search engine for Tor (not recommended for other browsers)"
+                title: "Tor66 (DarkNet)",
+                url: "http://tor66sewebgixwhcqfnp5inzp5x5uohhdy3kvtnyfxc2e5mxiuh34iid.onion/",
+                snippet: "Anonymous dark search engine for Tor.",
+                tags: ["darknet", "tor", "search", "onion"]
             },
             {
                 title: "Excavator (DarkNet)",
                 url: "http://2fd6cemt4gmccflhm6imvdfvli3nf7zn6rfrwpsy7uhxrgbypvwf5fad.onion/",
-                snippet: "Anonymous .onion search engine for Tor (not recommended for other browsers)"
+                snippet: "This excavator is very dangerous, be careful when treating it, use Tor.",
+                tags: ["darknet", "tor", "search", "onion"]
+            },
+            {
+                title: "Secure Password Generator By NeoNeon",
+                url: "https://neosecure.pages.dev",
+                snippet: "Generate secure passwords without tracking.",
+                tags: ["security", "password", "generator", "crypto", "tor", "bitwarden"],
+                isAd: true
+            },
+            {
+                title: "GitHub",
+                url: "https://github.com",
+                snippet: "Platform for code hosting and version control.",
+                tags: ["code", "development", "git", "open-source"]
+            },
+            {
+                title: "Wikipedia",
+                url: "https://wikipedia.org",
+                snippet: "Free online encyclopedia edited by volunteers.",
+                tags: ["wiki", "knowledge", "education", "reference"]
+            },
+            {
+                title: "Not Evil (DarkNet)",
+                url: "http://dqp5kblhl3a4qvt7tbppgx4c4wxsnoelgmvsqrdbgx4kghhu7s4b6iid.onion/",
+                snippet: "Anonymous .onion search engine for Tor.",
+                tags: ["darknet", "onion", "search", "private"]
             },
             {
                 title: "Ahmia (DarkNet)",
                 url: "http://ahmia.fi",
-                snippet: "Anonymous search engine for Tor (not recommended for other browsers)"
+                snippet: "Search engine for darknet / onion links.",
+                tags: ["darknet", "onion", "search", "hidden", "sites"]
             },
             {
-                title: "lol",
-                url: "lol",
-                snippet: "lol"
+                title: "Element Chat",
+                url: "https://app.element.io",
+                snippet: "Open source encrypted communication app.",
+                tags: ["chat", "encryption", "matrix", "private", "secure"]
+            },
+            {
+                title: "ProtonMail",
+                url: "https://protonmail.com",
+                snippet: "Encrypted email service with Swiss privacy laws.",
+                tags: ["email", "secure", "private", "encrypted"]
+            },
+            {
+                title: "Signal Messenger",
+                url: "https://signal.org",
+                snippet: "End-to-end encrypted messaging service.",
+                tags: ["messenger", "secure", "private", "encrypted"]
+            },
+            {
+                title: "Startpage",
+                url: "https://startpage.com",
+                snippet: "Private search engine based on Google results.",
+                tags: ["search", "privacy", "secure", "anonymous"]
+            },
+            {
+                title: "Qwant",
+                url: "https://qwant.com",
+                snippet: "European private search engine.",
+                tags: ["search", "privacy", "eu", "secure"]
+            },
+            {
+                title: "Tutanota Email",
+                url: "https://tutanota.com",
+                snippet: "Encrypted email service from Germany.",
+                tags: ["email", "secure", "private", "encrypted"]
+            },
+            {
+                title: "Riseup Mail",
+                url: "https://riseup.net",
+                snippet: "Collective-based anonymous email service.",
+                tags: ["email", "secure", "private", "activism"]
+            },
+            {
+                title: "Invidious",
+                url: "https://invidious.snopyta.org",
+                snippet: "Privacy-respecting YouTube frontend.",
+                tags: ["video", "youtube", "privacy", "alternative"]
+            },
+            {
+                title: "Lilac Search",
+                url: "https://lilac.search",
+                snippet: "Self-hosted alternative to DuckDuckGo.",
+                tags: ["search", "privacy", "self-hosted", "open-source"]
+            },
+            {
+                title: "Searx Search",
+                url: "https://searx.be",
+                snippet: "Meta-search engine that doesn't track you.",
+                tags: ["search", "privacy", "metasearch", "secure"]
+            },
+            {
+                title: "Librex",
+                url: "https://librex.art",
+                snippet: "Alternative search engine with focus on privacy.",
+                tags: ["search", "privacy", "fast", "clean"]
+            },
+            {
+                title: "YouTube",
+                url: "https://youtube.com",
+                snippet: "World's largest video sharing platform.",
+                tags: ["video", "media", "entertainment", "social"]
+            },
+            {
+                title: "Facebook",
+                url: "https://facebook.com",
+                snippet: "Popular social media platform.",
+                tags: ["social", "network", "media", "ads"]
+            },
+            {
+                title: "Twitter (X)",
+                url: "https://twitter.com",
+                snippet: "Social media platform for short messages.",
+                tags: ["social", "news", "media", "microblogging"]
+            },
+            {
+                title: "Reddit",
+                url: "https://reddit.com",
+                snippet: "Community-based discussion platform.",
+                tags: ["community", "discussion", "social", "forums"]
+            },
+            {
+                title: "Stack Overflow",
+                url: "https://stackoverflow.com",
+                snippet: "Question & answer site for programmers.",
+                tags: ["programming", "coding", "dev", "help"]
+            },
+            {
+                title: "MDN Web Docs",
+                url: "https://developer.mozilla.org",
+                snippet: "Documentation for web developers.",
+                tags: ["documentation", "web", "html", "css", "javascript"]
+            },
+            {
+                title: "Google",
+                url: "https://google.com",
+                snippet: "Most popular search engine.",
+                tags: ["search", "engine", "ads", "google"]
+            },
+            {
+                title: "Yahoo",
+                url: "https://yahoo.com",
+                snippet: "Old-school search engine and portal.",
+                tags: ["search", "portal", "news", "old"]
+            },
+            {
+                title: "Bing",
+                url: "https://bing.com",
+                snippet: "Microsoft's search engine.",
+                tags: ["search", "engine", "microsoft", "ai"]
+            },
+            {
+                title: "Tumblr",
+                url: "https://tumblr.com",
+                snippet: "Microblogging and social media platform.",
+                tags: ["social", "blogging", "media", "creative"]
+            },
+            {
+                title: "Pinterest",
+                url: "https://pinterest.com",
+                snippet: "Image sharing and bookmarking service.",
+                tags: ["images", "bookmarks", "design", "inspiration"]
+            },
+            {
+                title: "Discord",
+                url: "https://discord.com",
+                snippet: "Chat platform for communities and gamers.",
+                tags: ["chat", "voice", "gaming", "communities"]
+            },
+            {
+                title: "WhatsApp Web",
+                url: "https://web.whatsapp.com",
+                snippet: "Web version of WhatsApp messenger.",
+                tags: ["messenger", "chat", "encrypted", "mobile"]
+            },
+            {
+                title: "Crypto.com",
+                url: "https://crypto.com",
+                snippet: "Cryptocurrency exchange and wallet.",
+                tags: ["crypto", "exchange", "wallet", "blockchain"]
+            },
+            {
+                title: "Coinbase",
+                url: "https://coinbase.com",
+                snippet: "Cryptocurrency trading platform.",
+                tags: ["crypto", "exchange", "coins", "trading"]
+            },
+            {
+                title: "Binance",
+                url: "https://binance.com",
+                snippet: "World's largest crypto exchange.",
+                tags: ["crypto", "exchange", "coin", "blockchain"]
+            },
+            {
+                title: "Duolingo",
+                url: "https://duolingo.com",
+                snippet: "Language learning platform.",
+                tags: ["language", "learning", "education", "apps"]
+            },
+            {
+                title: "Khan Academy",
+                url: "https://khanacademy.org",
+                snippet: "Free educational resources and courses.",
+                tags: ["education", "courses", "school", "math"]
+            },
+            {
+                title: "Coursera",
+                url: "https://coursera.org",
+                snippet: "Online courses and certifications.",
+                tags: ["education", "courses", "university", "certifications"]
+            },
+            {
+                title: "Udemy",
+                url: "https://udemy.com",
+                snippet: "Online learning platform.",
+                tags: ["education", "courses", "skills", "development"]
+            },
+            {
+                title: "MIT OpenCourseWare",
+                url: "https://ocw.mit.edu",
+                snippet: "Free access to MIT course materials.",
+                tags: ["education", "college", "engineering", "science"]
+            },
+            {
+                title: "TED Talks",
+                url: "https://ted.com",
+                snippet: "Ideas worth spreading.",
+                tags: ["talks", "ideas", "inspiration", "technology"]
+            },
+            {
+                title: "Netflix",
+                url: "https://netflix.com",
+                snippet: "Streaming service for movies and series.",
+                tags: ["streaming", "movies", "series", "entertainment"]
+            },
+            {
+                title: "Spotify",
+                url: "https://spotify.com",
+                snippet: "Music streaming platform.",
+                tags: ["music", "streaming", "audio", "playlists"]
+            },
+            {
+                title: "SoundCloud",
+                url: "https://soundcloud.com",
+                snippet: "Audio distribution platform.",
+                tags: ["music", "audio", "sharing", "artists"]
+            },
+            {
+                title: "HackerOne",
+                url: "https://hackerone.com",
+                snippet: "Bug bounty platform for ethical hackers.",
+                tags: ["security", "hacking", "bug", "bounty"]
+            },
+            {
+                title: "TryHackMe",
+                url: "https://tryhackme.com",
+                snippet: "Learn cybersecurity through hands-on labs.",
+                tags: ["security", "cyber", "hacking", "learning"]
+            },
+            {
+                title: "HackTheBox",
+                url: "https://hackthebox.com",
+                snippet: "Penetration testing training platform.",
+                tags: ["security", "pentest", "ctf", "training"]
+            },
+            {
+                title: "OWASP",
+                url: "https://owasp.org",
+                snippet: "Open security community for web application security.",
+                tags: ["security", "web", "owasp", "guide"]
+            },
+            {
+                title: "VulnHub",
+                url: "https://vulnhub.com",
+                snippet: "Platform with vulnerable virtual machines for practice.",
+                tags: ["security", "vm", "practice", "penetration"]
+            },
+            {
+                title: "CTFtime",
+                url: "https://ctftime.org",
+                snippet: "List of Capture The Flag competitions.",
+                tags: ["security", "ctf", "competition", "events"]
+            },
+            {
+                title: "ExploitDB",
+                url: "https://exploit-db.com",
+                snippet: "Public archive of exploits and vulnerabilities.",
+                tags: ["security", "exploits", "vulnerabilities", "database"]
+            },
+            {
+                title: "Shodan",
+                url: "https://shodan.io",
+                snippet: "Search engine for internet-connected devices.",
+                tags: ["security", "iot", "devices", "exploration"]
+            },
+            {
+                title: "HaveIBeenPwned",
+                url: "https://haveibeenpwned.com",
+                snippet: "Check if your data has been compromised in breaches.",
+                tags: ["security", "breach", "password", "data"]
+            },
+            {
+                title: "Password Checker by NordPass",
+                url: "https://nordpass.com/password-checker/",
+                snippet: "Check strength of your password.",
+                tags: ["security", "password", "checker", "strength"]
+            },
+            {
+                title: "LastPass",
+                url: "https://lastpass.com",
+                snippet: "Password manager service.",
+                tags: ["security", "password", "manager", "storage"]
+            },
+            {
+                title: "Bitwarden",
+                url: "https://bitwarden.com",
+                snippet: "Open source password manager.",
+                tags: ["security", "password", "manager", "open-source"]
+            },
+            {
+                title: "1Password",
+                url: "https://1password.com",
+                snippet: "Premium password manager.",
+                tags: ["security", "password", "manager", "premium"]
+            },
+            {
+                title: "Authy",
+                url: "https://authy.com",
+                snippet: "Two-factor authentication app.",
+                tags: ["security", "2fa", "authenticator", "login"]
+            },
+            {
+                title: "YubiKey Store",
+                url: "https://www.yubico.com",
+                snippet: "Official store for YubiKey hardware security keys.",
+                tags: ["security", "hardware", "key", "authentication"]
+            },
+            {
+                title: "Thunderbird",
+                url: "https://thunderbird.net",
+                snippet: "Email client with strong privacy features.",
+                tags: ["email", "client", "privacy", "desktop"]
+            },
+            {
+                title: "Zoho Mail",
+                url: "https://mail.zoho.com",
+                snippet: "Business email solution with privacy features.",
+                tags: ["email", "business", "privacy", "service"]
+            },
+            {
+                title: "Mailinator",
+                url: "https://mailinator.com",
+                snippet: "Temporary email address generator.",
+                tags: ["email", "temporary", "disposable", "test"]
+            },
+            {
+                title: "TempMail",
+                url: "https://temp-mail.org",
+                snippet: "Disposable temporary email service.",
+                tags: ["email", "temporary", "disposable", "free"]
+            },
+            {
+                title: "AnonAddy",
+                url: "https://anonaddy.com",
+                snippet: "Private email forwarding service.",
+                tags: ["email", "forwarding", "private", "alias"]
+            },
+            {
+                title: "Maildrop.cc",
+                url: "https://maildrop.cc",
+                snippet: "Temporary email addresses with no sign-up.",
+                tags: ["email", "temporary", "disposable", "no-registration"]
+            },
+            {
+                title: "Guerrilla Mail",
+                url: "https://guerrillamail.com",
+                snippet: "Temporary email service for quick use.",
+                tags: ["email", "temporary", "quick", "short-term"]
+            },
+            {
+                title: "ProtonVPN",
+                url: "https://protonvpn.com",
+                snippet: "Swiss-based privacy-focused virtual private network.",
+                tags: ["vpn", "privacy", "security", "swiss"]
+            },
+            {
+                title: "Mullvad",
+                url: "https://mullvad.net",
+                snippet: "Anonymous virtual private network service.",
+                tags: ["vpn", "privacy", "anonymous", "security"]
+            },
+            {
+                title: "Windscribe",
+                url: "https://windscribe.com",
+                snippet: "Privacy tool with free and premium plans.",
+                tags: ["vpn", "privacy", "tool", "firewall"]
+            },
+            {
+                title: "NordVPN",
+                url: "https://nordvpn.com",
+                snippet: "Cybersecurity company offering virtual private networks.",
+                tags: ["vpn", "privacy", "security", "premium"]
+            },
+            {
+                title: "ExpressVPN",
+                url: "https://expressvpn.com",
+                snippet: "High-speed virtual private network service.",
+                tags: ["vpn", "speed", "security", "premium"]
+            },
+            {
+                title: "Surfshark",
+                url: "https://surfshark.com",
+                snippet: "Affordable and fast virtual private network.",
+                tags: ["vpn", "privacy", "cheap", "fast"]
+            },
+            {
+                title: "Private Internet Access",
+                url: "https://privateinternetaccess.com",
+                snippet: "Virtual private network with many servers.",
+                tags: ["vpn", "servers", "security", "network"]
+            },
+            {
+                title: "AirVPN",
+                url: "https://airvpn.org",
+                snippet: "Community-driven virtual private network.",
+                tags: ["vpn", "community", "security", "open"]
+            },
+            {
+                title: "ZeroTier",
+                url: "https://zerotier.com",
+                snippet: "Virtual private networking using peer-to-peer technology.",
+                tags: ["network", "peer", "zero-trust", "decentralized"]
+            },
+            {
+                title: "NextDNS",
+                url: "https://nextdns.io",
+                snippet: "Privacy-first DNS resolver.",
+                tags: ["dns", "privacy", "resolver", "security"]
+            },
+            {
+                title: "Cloudflare 1.1.1.1",
+                url: "https://1.1.1.1",
+                snippet: "Fast and private DNS service.",
+                tags: ["dns", "privacy", "fast", "cloudflare"]
             }
         ];
 
-        // Search functionality
         document.getElementById('searchButton').addEventListener('click', performSearch);
         document.getElementById('searchQuery').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                performSearch();
-            }
+            if (e.key === 'Enter') performSearch();
         });
 
         function performSearch() {
             const query = document.getElementById('searchQuery').value.trim().toLowerCase();
             const resultsContainer = document.getElementById('searchResults');
-            
-            if (!query) {
-                return;
-            }
+            if (!query) return;
 
-            // Hide features section when showing results
             document.getElementById('features').style.display = 'none';
-            
-            // Clear previous results
             resultsContainer.innerHTML = '';
             resultsContainer.style.display = 'block';
 
-            // Find matching results
-            const matchingResults = searchDatabase.filter(item => {
-                return item.title.toLowerCase().includes(query) || 
-                       item.snippet.toLowerCase().includes(query) ||
-                       item.url.toLowerCase().includes(query);
+            let results = [];
+
+            // Рекламные сайты с совпадающими тэгами
+            const ads = searchDatabase.filter(item =>
+                item.isAd && item.tags && item.tags.some(tag => query.includes(tag.toLowerCase()))
+            );
+            results.push(...ads);
+
+            // Остальные сайты
+            const others = searchDatabase.filter(item => !item.isAd).filter(item => {
+                return (
+                    item.title.toLowerCase().includes(query) ||
+                    item.snippet.toLowerCase().includes(query) ||
+                    item.url.toLowerCase().includes(query) ||
+                    (item.tags && item.tags.some(tag => tag.toLowerCase().includes(query)))
+                );
             });
 
-            if (matchingResults.length === 0) {
-                resultsContainer.innerHTML = `
-                    <div class="no-results">
-                        No results found for "${query}". Try different keywords.
-                    </div>
-                `;
+            results.push(...others);
+
+            if (results.length === 0) {
+                resultsContainer.innerHTML = `<div class="no-results">No results found for "${query}". Try different keywords.</div>`;
                 return;
             }
 
-            // Display results
-            matchingResults.forEach(result => {
+            results.forEach(result => {
                 const resultElement = document.createElement('div');
                 resultElement.className = 'result-item';
                 resultElement.innerHTML = `
@@ -588,24 +836,19 @@
                 resultsContainer.appendChild(resultElement);
             });
 
-            // Scroll to results
             resultsContainer.scrollIntoView({ behavior: 'smooth' });
         }
 
-        // Language switching functionality
         document.querySelectorAll('.language-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
+            btn.addEventListener('click', function () {
                 document.querySelectorAll('.language-btn').forEach(b => b.classList.remove('active'));
                 this.classList.add('active');
-                
                 if (this.textContent === 'Русский') {
-                    // Switch to Russian
                     document.querySelector('h1').textContent = 'Поиск без компромиссов';
                     document.querySelector('.search-input').placeholder = 'Спросите что угодно...';
                     document.querySelector('.search-btn').textContent = 'Поиск';
                     document.querySelector('.security-badge').innerHTML = '🔒 Активен сверхбезопасный режим | Нет отслеживания';
                 } else {
-                    // Switch to English
                     document.querySelector('h1').textContent = 'Search Without Compromise';
                     document.querySelector('.search-input').placeholder = 'Ask anything...';
                     document.querySelector('.search-btn').textContent = 'Search';
