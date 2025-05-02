@@ -1246,11 +1246,11 @@
         const aiSuggestion = document.createElement('div');
         aiSuggestion.className = 'ai-suggestion';
         aiSuggestion.innerHTML = `
-            <div class="ai-suggestion-title">Can't find what you're looking for?</div>
-            <div class="ai-suggestion-text">
-                Our AI assistant might be able to answer your question about "${query}".
-            </div>
-            <button class="ai-btn" onclick="askAI('${query.replace(/'/g, "\\'")}')">Ask AI Assistant</button>
+<div class="ai-suggestion-title">Can't find what you're looking for?</div>
+<div class="ai-suggestion-text">
+    Our AI assistant might be able to answer your question about "${query}".
+</div>
+<button class="ai-btn" onclick="window.location.href='https://duck.ai?q=${encodeURIComponent(query.replace(/'/g, "\\'"))}'">Ask AI Assistant</button>
         `;
         resultsContainer.appendChild(aiSuggestion);
 
