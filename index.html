@@ -294,6 +294,109 @@
             font-size: 18px;
         }
 
+        .suggestions {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: rgba(10, 10, 30, 0.5);
+            border-radius: 10px;
+            border: 1px solid rgba(150, 0, 255, 0.3);
+        }
+
+        .suggestion-title {
+            font-size: 16px;
+            margin-bottom: 15px;
+            color: var(--neon-blue);
+        }
+
+        .suggestion-item {
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: rgba(150, 0, 255, 0.1);
+            border-radius: 5px;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .suggestion-item:hover {
+            background-color: rgba(0, 240, 252, 0.2);
+        }
+
+        .suggestion-link {
+            color: var(--text-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .suggestion-icon {
+            margin-right: 10px;
+            font-size: 18px;
+        }
+
+        .ai-suggestion {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: rgba(0, 240, 252, 0.1);
+            border-radius: 10px;
+            border: 1px solid var(--neon-blue);
+        }
+
+        .ai-suggestion-title {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: var(--neon-blue);
+        }
+
+        .ai-suggestion-text {
+            margin-bottom: 15px;
+        }
+
+        .ai-btn {
+            background: linear-gradient(45deg, var(--neon-purple), var(--neon-blue));
+            border: none;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .ai-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 10px rgba(0, 240, 252, 0.5);
+        }
+
+        .related-queries {
+            margin-top: 30px;
+        }
+
+        .related-title {
+            font-size: 16px;
+            margin-bottom: 15px;
+            color: var(--neon-blue);
+        }
+
+        .related-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .related-item {
+            padding: 8px 15px;
+            background-color: rgba(150, 0, 255, 0.1);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 14px;
+        }
+
+        .related-item:hover {
+            background-color: rgba(0, 240, 252, 0.2);
+            color: var(--neon-blue);
+        }
+
         @keyframes pulse {
             0% { opacity: 0.7; }
             50% { opacity: 1; }
@@ -328,8 +431,8 @@
     <header>
         <div class="logo">NeoPage <span>by NeoNeon</span></div>
         <nav>
-            <button class="mode-btn" onclick="toggleMode('regular')">Regular Mode</button>
-            <button class="mode-btn active" onclick="toggleMode('dark')">Dark Mode</button>
+            <button class="mode-btn active" onclick="toggleMode('regular')">Regular Mode</button>
+            <button class="mode-btn" onclick="toggleMode('dark')">Dark Mode</button>
         </nav>
     </header>
 
@@ -375,7 +478,7 @@
 </div>
 
 <script>
-    let currentMode = 'dark';
+    let currentMode = 'regular';
 
     const regularDatabase = [
         {
@@ -456,8 +559,6 @@
             snippet: "Encrypted email service from Germany.",
             tags: ["email", "secure", "private", "encrypted"]
         },
-        // ЗДЕСЬ МОЖНО ДОБАВИТЬ ЕЩЁ ~100 САЙТОВ
-        // Пример:
         {
             title: "MDN Web Docs",
             url: "https://developer.mozilla.org",
@@ -660,8 +761,6 @@
             snippet: "Another large darknet market with multiple vendors.",
             tags: ["market", "vendors", "darknet", "drugs", "goods"]
         },
-        // Здесь можно добавить ещё 100 .onion сайтов
-        // Примеры:
         {
             title: "Hydra Market Mirror",
             url: "http://hydraruzxpnew4af.onion",
@@ -989,19 +1088,70 @@
         }
     ];
 
+    // External services for suggestions
+    const externalServices = {
+        wikipedia: {
+            name: "Wikipedia",
+            icon: "📚",
+            url: query => `https://en.wikipedia.org/wiki/Special:Search?search=${encodeURIComponent(query)}`
+        },
+        reddit: {
+            name: "Reddit",
+            icon: "💬",
+            url: query => `https://www.reddit.com/search/?q=${encodeURIComponent(query)}`
+        },
+        stackoverflow: {
+            name: "Stack Overflow",
+            icon: "💻",
+            url: query => `https://stackoverflow.com/search?q=${encodeURIComponent(query)}`
+        },
+        youtube: {
+            name: "YouTube",
+            icon: "🎥",
+            url: query => `https://www.youtube.com/results?search_query=${encodeURIComponent(query)}`
+        },
+        github: {
+            name: "GitHub",
+            icon: "👨‍💻",
+            url: query => `https://github.com/search?q=${encodeURIComponent(query)}`
+        }
+    };
+
+    // Related queries database
+    const relatedQueries = {
+        "how to": ["how to code", "how to cook", "how to learn", "how to fix", "how to make"],
+        "what is": ["what is love", "what is ai", "what is bitcoin", "what is programming"],
+        "best": ["best movies", "best books", "best games", "best programming language"],
+        "why": ["why sky is blue", "why we sleep", "why learn programming"],
+        "security": ["security tools", "security best practices", "cyber security", "privacy tools"],
+        "darknet": ["darknet markets", "darknet security", "how to access darknet"],
+        "privacy": ["privacy tools", "privacy laws", "how to stay private online"],
+        "programming": ["learn programming", "programming languages", "coding tutorials"],
+        "crypto": ["bitcoin", "ethereum", "crypto wallets", "blockchain"],
+        "ai": ["artificial intelligence", "machine learning", "neural networks"]
+    };
+
     document.getElementById('searchButton').addEventListener('click', performSearch);
     document.getElementById('searchQuery').addEventListener('keypress', function(e) {
         if (e.key === 'Enter') performSearch();
+    });
+
+    // Set regular mode as default
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelector('.mode-btn.active').click();
     });
 
     function toggleMode(mode) {
         currentMode = mode;
         const buttons = document.querySelectorAll('.mode-btn');
         buttons.forEach(btn => btn.classList.remove('active'));
-        if (mode === 'regular') buttons[0].classList.add('active');
-        else buttons[1].classList.add('active');
-
-        document.getElementById('searchQuery').placeholder = mode === 'dark' ? 'Enter query for DarkNet...' : 'Ask anything...';
+        if (mode === 'regular') {
+            buttons[0].classList.add('active');
+            document.getElementById('searchQuery').placeholder = 'Ask anything...';
+        } else {
+            buttons[1].classList.add('active');
+            document.getElementById('searchQuery').placeholder = 'Enter query for DarkNet...';
+        }
     }
 
     function performSearch() {
@@ -1014,44 +1164,147 @@
         resultsContainer.style.display = 'block';
 
         let results = [];
-
         const db = currentMode === 'dark' ? darkDatabase : regularDatabase;
 
-        // Рекламные сайты с совпадением тэгов
-        const ads = db.filter(item =>
-            item.isAd && item.tags && item.tags.some(tag => query.includes(tag.toLowerCase()))
+        // First, try to find exact matches
+        const exactMatches = db.filter(item => 
+            item.title.toLowerCase() === query || 
+            item.tags?.some(tag => tag.toLowerCase() === query)
         );
-        results.push(...ads);
 
-        // Остальные сайты
-        const others = db.filter(item => !item.isAd).filter(item => {
-            return (
+        // Then find partial matches
+        const partialMatches = db.filter(item => 
+            !exactMatches.includes(item) && (
                 item.title.toLowerCase().includes(query) ||
                 item.snippet.toLowerCase().includes(query) ||
                 item.url.toLowerCase().includes(query) ||
                 (item.tags && item.tags.some(tag => tag.toLowerCase().includes(query)))
-            );
-        });
+            )
+        );
 
-        results.push(...others);
+        // Add ads with matching tags
+        const ads = db.filter(item =>
+            item.isAd && item.tags && item.tags.some(tag => query.includes(tag.toLowerCase()))
+        );
 
-        if (results.length === 0) {
-            resultsContainer.innerHTML = `<div class="no-results">No results found for "${query}". Try different keywords.</div>`;
-            return;
+        results.push(...exactMatches, ...partialMatches, ...ads);
+
+        if (results.length > 0) {
+            // Display results
+            results.forEach(result => {
+                const resultElement = document.createElement('div');
+                resultElement.className = 'result-item';
+                resultElement.innerHTML = `
+                    <h3 class="result-title">${result.title}</h3>
+                    <a href="${result.url}" class="result-link" target="_blank">${result.url}</a>
+                    <p class="result-snippet">${result.snippet}</p>
+                `;
+                resultsContainer.appendChild(resultElement);
+            });
+
+            // Add related queries
+            addRelatedQueries(query);
+        } else {
+            // No results found - show suggestions
+            showNoResultsSuggestions(query);
         }
 
-        results.forEach(result => {
-            const resultElement = document.createElement('div');
-            resultElement.className = 'result-item';
-            resultElement.innerHTML = `
-                <h3 class="result-title">${result.title}</h3>
-                <a href="${result.url}" class="result-link" target="_blank">${result.url}</a>
-                <p class="result-snippet">${result.snippet}</p>
-            `;
-            resultsContainer.appendChild(resultElement);
-        });
-
         resultsContainer.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function showNoResultsSuggestions(query) {
+        const resultsContainer = document.getElementById('searchResults');
+        
+        // Main "no results" message
+        resultsContainer.innerHTML = `
+            <div class="no-results">
+                No exact matches found for "${query}".<br>
+                Here are some alternative options:
+            </div>
+        `;
+
+        // Suggestions from external services
+        const suggestionsDiv = document.createElement('div');
+        suggestionsDiv.className = 'suggestions';
+        suggestionsDiv.innerHTML = '<div class="suggestion-title">Try searching on:</div>';
+
+        for (const [key, service] of Object.entries(externalServices)) {
+            const suggestionItem = document.createElement('div');
+            suggestionItem.className = 'suggestion-item';
+            suggestionItem.innerHTML = `
+                <a href="${service.url(query)}" class="suggestion-link" target="_blank">
+                    <span class="suggestion-icon">${service.icon}</span>
+                    ${service.name}
+                </a>
+            `;
+            suggestionsDiv.appendChild(suggestionItem);
+        }
+
+        resultsContainer.appendChild(suggestionsDiv);
+
+        // AI suggestion
+        const aiSuggestion = document.createElement('div');
+        aiSuggestion.className = 'ai-suggestion';
+        aiSuggestion.innerHTML = `
+            <div class="ai-suggestion-title">Can't find what you're looking for?</div>
+            <div class="ai-suggestion-text">
+                Our AI assistant might be able to answer your question about "${query}".
+            </div>
+            <button class="ai-btn" onclick="askAI('${query.replace(/'/g, "\\'")}')">Ask AI Assistant</button>
+        `;
+        resultsContainer.appendChild(aiSuggestion);
+
+        // Add related queries
+        addRelatedQueries(query);
+    }
+
+    function addRelatedQueries(query) {
+        const resultsContainer = document.getElementById('searchResults');
+        
+        // Find related queries based on the first word
+        const firstWord = query.split(' ')[0];
+        let related = relatedQueries[firstWord] || [];
+
+        // If no related queries found, use some general ones
+        if (related.length === 0) {
+            related = [
+                `${query} tutorial`,
+                `how to ${query}`,
+                `best ${query}`,
+                `${query} examples`
+            ];
+        }
+
+        // Limit to 5 related queries
+        related = related.slice(0, 5);
+
+        if (related.length > 0) {
+            const relatedDiv = document.createElement('div');
+            relatedDiv.className = 'related-queries';
+            relatedDiv.innerHTML = '<div class="related-title">Related searches:</div>';
+            
+            const relatedList = document.createElement('div');
+            relatedList.className = 'related-list';
+            
+            related.forEach(item => {
+                const relatedItem = document.createElement('div');
+                relatedItem.className = 'related-item';
+                relatedItem.textContent = item;
+                relatedItem.addEventListener('click', () => {
+                    document.getElementById('searchQuery').value = item;
+                    performSearch();
+                });
+                relatedList.appendChild(relatedItem);
+            });
+            
+            relatedDiv.appendChild(relatedList);
+            resultsContainer.appendChild(relatedDiv);
+        }
+    }
+
+    function askAI(query) {
+        // In a real implementation, this would call an AI API
+        alert(`AI response would be generated for: "${query}"\n\nIn a real implementation, this would connect to an AI service like OpenAI or a similar API to generate a response.`);
     }
 
     document.querySelectorAll('.language-btn').forEach(btn => {
